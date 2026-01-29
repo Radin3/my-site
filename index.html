@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just One Honest Message</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #232526, #414345);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    color: #eee;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    width: 90%;
+    max-width: 420px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    text-align: center;
+    animation: fade 1.5s ease;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #ff9aa2;
+}
+
+#typing {
+    font-size: 16px;
+    line-height: 1.7;
+    white-space: pre-line;
+    min-height: 220px;
+}
+
+button {
+    margin-top: 25px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 25px;
+    background: #ff9aa2;
+    color: #222;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <h1>For You</h1>
+    <div id="typing"></div>
+    <button onclick="start()">Read When You’re Ready</button>
+</div>
+
+<script>
+const HER_NAME = "Setayesh"; // CHANGE THIS
+
+const message = `salam ${HER_NAME},
+
+Doset Daram`;
+
+let i = 0;
+
+function type() {
+    if (i < message.length) {
+        document.getElementById("typing").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(type, 35);
+    }
+}
+
+function start() {
+    document.getElementById("music").play();
+    document.getElementById("typing").innerHTML = "";
+    i = 0;
+    type();
+}
+</script>
+
+</body>
+</html>
